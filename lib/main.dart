@@ -154,7 +154,7 @@ class RemainingTimeWidget extends StatelessWidget {
                 .textTheme
                 .headline1,
           );
-        })
+        }),
       ],
     );
   }
