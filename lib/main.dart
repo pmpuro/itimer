@@ -97,6 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            RemainingTime(),
             Text(
               'You have pushed the button this many times:',
             ),
@@ -112,6 +113,24 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class RemainingTime extends StatelessWidget {
+  const RemainingTime({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Text('90', style: Theme
+            .of(context)
+            .textTheme
+            .headline1,)
+      ],
     );
   }
 }
