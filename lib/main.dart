@@ -56,14 +56,6 @@ class Logic {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,13 +67,6 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             RemainingTimeWidget(),
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
             ButtonBar(
               children: <Widget>[
                 RaisedButton(
@@ -100,11 +85,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
@@ -132,10 +112,7 @@ class RemainingTimeWidget extends StatelessWidget {
         Consumer<RemainingTime>(builder: (context, time, child) {
           return Text(
             '${time.remaining}',
-            style: Theme
-                .of(context)
-                .textTheme
-                .headline1,
+            style: Theme.of(context).textTheme.headline1,
           );
         }),
       ],
