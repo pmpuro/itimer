@@ -90,12 +90,12 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class RemainingTime extends ChangeNotifier {
-  int currentValue = 0;
+  int _currentValue = 0;
 
-  int get remaining => currentValue;
+  int get remaining => _currentValue;
 
   void updateTime(int newValue) {
-    currentValue = newValue;
+    _currentValue = newValue;
     notifyListeners();
   }
 }
