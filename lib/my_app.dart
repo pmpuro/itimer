@@ -17,7 +17,9 @@ class MyApp extends StatelessWidget {
         ),
         home: MultiProvider(
           providers: [
-            Provider<Logic>(create: (context) => Logic(MyTimer())),
+            Provider<ActivityLogic>(
+                create: (context) => ActivityLogic(MyTimer())),
+            Provider<RestLogic>(create: (context) => RestLogic(MyTimer())),
             ChangeNotifierProvider(create: (context) => RemainingTime()),
           ],
           child: MyHomePage(title: 'Flutter Timer'),

@@ -12,3 +12,11 @@ class Logic {
 
   Stream<bool> get timerIsActive => _timer.active();
 }
+
+class ActivityLogic extends Logic {
+  ActivityLogic(MyTimer timer) : super(timer);
+}
+
+class RestLogic extends Logic {
+  RestLogic(MyTimer timer) : super(timer);
+}
