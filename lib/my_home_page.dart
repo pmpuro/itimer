@@ -41,9 +41,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _startUpdatingRemainingTime(BuildContext context) {
     var logic = Provider.of<Logic>(context);
-    logic.start(10);
     var remainingTime = Provider.of<RemainingTime>(context);
-    logic.timerValue.listen((value) {
+    logic.getTimerValues(10).listen((value) {
       remainingTime.updateTime(value);
     });
   }

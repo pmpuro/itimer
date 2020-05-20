@@ -5,11 +5,10 @@ class Logic {
 
   MyTimer _timer;
 
-  Stream<int> get timerValue => _timer.output();
+  Stream<int> getTimerValues(int duration) {
+    _timer.start(duration);
+    return _timer.output();
+  }
 
   Stream<bool> get timerIsActive => _timer.active();
-
-  void start(int duration) {
-    _timer.start(duration);
-  }
 }
