@@ -28,14 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ButtonBar(
               children: <Widget>[
                 RaisedButton(
-                  onPressed: () {
-                    var logic = Provider.of<Logic>(context);
-                    logic.start(10);
-                    var remainingTime = Provider.of<RemainingTime>(context);
-                    logic.timerValue.listen((value) {
-                      remainingTime.updateTime(value);
-                    });
-                  },
+                  onPressed: () => _startUpdatingRemainingTime(context),
                   child: Text('Start'),
                 )
               ],
@@ -44,5 +37,14 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+
+  void _startUpdatingRemainingTime(BuildContext context) {
+    var logic = Provider.of<Logic>(context);
+    logic.start(10);
+    var remainingTime = Provider.of<RemainingTime>(context);
+    logic.timerValue.listen((value) {
+      remainingTime.updateTime(value);
+    });
   }
 }
