@@ -9,8 +9,6 @@ import 'remaining_time.dart';
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var logic;
-
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
@@ -19,14 +17,8 @@ class MyApp extends StatelessWidget {
         ),
         home: MultiProvider(
           providers: [
-            Provider<Logic>(create: (context) {
-              logic = Logic(MyTimer());
-              return logic;
-            }),
-            ChangeNotifierProvider(create: (context) {
-              var remainingTime = RemainingTime();
-              return remainingTime;
-            }),
+            Provider<Logic>(create: (context) => Logic(MyTimer())),
+            ChangeNotifierProvider(create: (context) => RemainingTime()),
           ],
           child: MyHomePage(title: 'Flutter Timer'),
         ));
