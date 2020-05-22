@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:itimer/remaining_time.dart';
 import 'package:itimer/remaining_time_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +23,16 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            RemainingTimeWidget(),
+            StreamBuilder(
+                initialData: 0,
+                stream: Provider.of<ActivityLogic>(context).getTimerValues(),
+                builder: (context, snapshot) {
+                  var newValue = 99;
+                  if (snapshot.hasData) {
+                    newValue = snapshot.data;
+                  }
+                  return RemainingTimeWidget(value: newValue);
+                }),
             ButtonBar(
               children: <Widget>[
                 RaisedButton(
@@ -33,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 )
               ],
             ),
-            RemainingTimeWidget(),
+            RemainingTimeWidget(value: 1),
           ],
         ),
       ),
@@ -42,9 +50,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _startUpdatingRemainingTime(BuildContext context) {
     var logic = Provider.of<ActivityLogic>(context);
-    var remainingTime = Provider.of<RemainingTime>(context);
-    logic.getTimerValues(10).listen((value) {
-      remainingTime.updateTime(value);
-    });
+    logic.start(10);
   }
 }

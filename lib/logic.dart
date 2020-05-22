@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:itimer/mytimer.dart';
 
 class Logic {
@@ -5,9 +7,15 @@ class Logic {
 
   MyTimer _timer;
 
-  Stream<int> getTimerValues(int duration) {
+  StreamController<int> _streamController = StreamController<int>();
+
+  Stream<int> getTimerValues() {
+    return _streamController.stream;
+  }
+
+  void start(int duration) {
     _timer.start(duration);
-    return _timer.output();
+    _streamController.addStream(_timer.output());
   }
 
   Stream<bool> get timerIsActive => _timer.active();
