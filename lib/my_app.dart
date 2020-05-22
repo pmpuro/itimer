@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'logic.dart';
 import 'my_home_page.dart';
 import 'mytimer.dart';
-import 'remaining_time.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -19,8 +18,7 @@ class MyApp extends StatelessWidget {
           providers: [
             Provider<ActivityLogic>(
                 create: (context) => ActivityLogic(MyTimer())),
-            Provider<RestLogic>(create: (context) => RestLogic(MyTimer())),
-            ChangeNotifierProvider(create: (context) => RemainingTime()),
+            Provider<RestLogic>(create: (context) => RestLogic(MyTimer()))
           ],
           child: MyHomePage(title: 'Flutter Timer'),
         ));
