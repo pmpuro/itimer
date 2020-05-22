@@ -21,18 +21,5 @@ void main() {
       expect(list.length, startValue + 1);
       expect(list.last, 0);
     });
-
-    test("status reported", () async {
-      var tested = MyTimer();
-      var startValue = 3;
-      var before = await tested.active().first;
-      tested.start(startValue);
-      var during = await tested.active().first;
-      await tested.output().toList();
-      var after = await tested.active().first;
-      expect(before, false);
-      expect(during, true);
-      expect(after, false);
-    });
   });
 }
