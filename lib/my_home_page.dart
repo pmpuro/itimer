@@ -23,16 +23,20 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            StreamBuilder(
-                initialData: 0,
-                stream: Provider.of<ActivityLogic>(context).getTimerValues(),
-                builder: (context, snapshot) {
-                  var newValue = 99;
-                  if (snapshot.hasData) {
-                    newValue = snapshot.data;
-                  }
-                  return RemainingTimeWidget(value: newValue);
-                }),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                StreamBuilder(
+                    initialData: false,
+                    stream: Provider.of<ActivityLogic>(context).timerIsActive(),
+                    builder: _buildActivityIndicator),
+                StreamBuilder(
+                    initialData: 0,
+                    stream:
+                        Provider.of<ActivityLogic>(context).getTimerValues(),
+                    builder: _buildRemainingTimeWidget),
+              ],
+            ),
             ButtonBar(
               children: <Widget>[
                 RaisedButton(
@@ -46,6 +50,24 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+
+  Widget _buildRemainingTimeWidget(context, snapshot) {
+    var newValue = 99;
+    if (snapshot.hasData) {
+      newValue = snapshot.data;
+    }
+
+    return RemainingTimeWidget(value: newValue);
+  }
+
+  Widget _buildActivityIndicator(context, snapshot) {
+    var newValue = false;
+    if (snapshot.data) {
+      newValue = snapshot.data;
+    }
+
+    return Text("Activity: $newValue");
   }
 
   void _startUpdatingRemainingTime(BuildContext context) {

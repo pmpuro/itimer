@@ -18,7 +18,9 @@ class Logic {
     _streamController.addStream(_timer.output());
   }
 
-  Stream<bool> get timerIsActive => _timer.active();
+  Stream<bool> timerIsActive() {
+    return _timer.active();
+  }
 }
 
 class ActivityLogic extends Logic {
